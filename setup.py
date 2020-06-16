@@ -1,6 +1,5 @@
 from setuptools import find_packages, setup
 
-
 install_requires = ["boto3", "psycopg2"]
 dev_requires = install_requires + [
     "autopep8>=1.4.4",
