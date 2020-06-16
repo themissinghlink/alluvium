@@ -1,1 +1,9 @@
-
+boto3==1.14.4             # via alluvium (setup.py)
+botocore==1.17.4          # via boto3, s3transfer
+docutils==0.15.2          # via botocore
+jmespath==0.10.0          # via boto3, botocore
+psycopg2==2.8.5           # via alluvium (setup.py)
+python-dateutil==2.8.1    # via botocore
+s3transfer==0.3.3         # via boto3
+six==1.15.0               # via python-dateutil
+urllib3==1.25.9           # via botocore
