@@ -100,9 +100,9 @@ def test_record_schema_ok():
     schema = AvroRecordSchema(
         name="order",
         fields=[
-            AvroRecordField(name="order_id", avro_type=AvroPrimitiveType.INTEGER),
+            AvroRecordField(name="order_id", avro_field_type=AvroPrimitiveType.INTEGER),
             AvroRecordField(
-                name="product_ids", avro_type=AvroArraySchema(items=AvroPrimitiveType.INTEGER)
+                name="product_ids", avro_field_type=AvroArraySchema(items=AvroPrimitiveType.INTEGER)
             ),
         ],
     )
@@ -120,7 +120,7 @@ def test_record_schema_ok():
     "optional_kwargs", [{"doc": "foo"}, {"default": "foo"}, {"aliases": ["foo"]}]
 )
 def test_record_field_optional_ok(optional_kwargs):
-    field = AvroRecordField(name="order_id", avro_type=AvroPrimitiveType.STRING, **optional_kwargs)
+    field = AvroRecordField(name="order_id", avro_field_type=AvroPrimitiveType.STRING, **optional_kwargs)
     base = {"name": "order_id", "type": "string"}
     base.update(optional_kwargs)
     assert field.generate_avro_field() == base
@@ -132,7 +132,7 @@ def test_record_field_optional_ok(optional_kwargs):
 def test_record_schema_optional_ok(optional_kwargs):
     schema = AvroRecordSchema(
         name="order",
-        fields=[AvroRecordField(name="order_id", avro_type=AvroPrimitiveType.INTEGER)],
+        fields=[AvroRecordField(name="order_id", avro_field_type=AvroPrimitiveType.INTEGER)],
         **optional_kwargs
     )
     base = {"type": "record", "name": "order", "fields": [{"name": "order_id", "type": "int"}]}

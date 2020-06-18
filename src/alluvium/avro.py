@@ -1,7 +1,7 @@
 """
 Defines the schema you expect from your CDC events.
 
-Provides synctactic sugar for Any types and Either Types.
+Provides syntactic sugar for Any types and Either Types.
 """
 
 from abc import ABC, abstractmethod
@@ -50,12 +50,6 @@ def resolve_primitive_type(avro_type: Union[AvroPrimitiveType, AvroCustomType]):
     raise ValueError("Invalid base type provided")
 
 
-class FieldOrdering(Enum):
-    ASCENDING = "ascending"
-    DESCENDING = "descending"
-    IGNORE = "ignore"
-
-
 class AvroSchema(ABC):
     def __init__(self, avro_type: Union[AvroPrimitiveType, AvroComplexType]):
         self.type = avro_type
@@ -65,18 +59,24 @@ class AvroSchema(ABC):
         pass
 
 
+class FieldOrdering(Enum):
+    ASCENDING = "ascending"
+    DESCENDING = "descending"
+    IGNORE = "ignore"
+
+
 class AvroRecordField(object):
     def __init__(
         self,
         name: str,
-        avro_type: Union[AvroSchema, AvroPrimitiveType],
+        avro_field_type: Union[AvroSchema, AvroPrimitiveType],
         doc: str = None,
         default: Any = None,
         order: FieldOrdering = None,
         aliases: List[str] = None,
     ):
         self.name = name
-        self.avro_type = avro_type
+        self.avro_field_type = avro_field_type
         self.doc = doc
         self.default = default
         self.order = order
@@ -84,9 +84,9 @@ class AvroRecordField(object):
 
     def generate_avro_field(self):
         base = {
-            "type": resolve_primitive_type(self.avro_type)
-            if isinstance(self.avro_type, (AvroPrimitiveType, AvroCustomType))
-            else self.avro_type.avro_schema(),
+            "type": resolve_primitive_type(self.avro_field_type)
+            if isinstance(self.avro_field_type, (AvroPrimitiveType, AvroCustomType))
+            else self.avro_field_type.avro_schema(),
             "name": self.name,
         }
         if self.doc:
