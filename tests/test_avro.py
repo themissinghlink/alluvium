@@ -120,7 +120,9 @@ def test_record_schema_ok():
     "optional_kwargs", [{"doc": "foo"}, {"default": "foo"}, {"aliases": ["foo"]}]
 )
 def test_record_field_optional_ok(optional_kwargs):
-    field = AvroRecordField(name="order_id", avro_field_type=AvroPrimitiveType.STRING, **optional_kwargs)
+    field = AvroRecordField(
+        name="order_id", avro_field_type=AvroPrimitiveType.STRING, **optional_kwargs
+    )
     base = {"name": "order_id", "type": "string"}
     base.update(optional_kwargs)
     assert field.generate_avro_field() == base
