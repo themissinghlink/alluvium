@@ -4,6 +4,7 @@ install_requires = ["boto3", "psycopg2"]
 dev_requires = install_requires + [
     "autopep8>=1.4.4",
     'black>=18.0.b0,<19;python_version>="3.6"',
+    "click",
     "flake8",
     "ipython",
     "isort>=4.3.21",
