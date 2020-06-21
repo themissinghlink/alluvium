@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-install_requires = []
+install_requires = ["boto3"]
 dev_requires = install_requires + [
     "autopep8>=1.4.4",
     'black>=18.0.b0,<19;python_version>="3.6"',
