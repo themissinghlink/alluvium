@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 boto3==1.14.8             # via alluvium (setup.py)
 botocore==1.17.8          # via boto3, s3transfer
-=======
-boto3==1.14.4             # via alluvium (setup.py)
-botocore==1.17.4          # via boto3, s3transfer
->>>>>>> added consumer logic and replication logic with tests/demo
-=======
-boto3==1.14.4             # via alluvium (setup.py)
-botocore==1.17.4          # via boto3, s3transfer
->>>>>>> 86b7a4fe0222f73ad22fb67a17c5eb5bae5208e5
 docutils==0.15.2          # via botocore
 jmespath==0.10.0          # via boto3, botocore
 psycopg2==2.8.5           # via alluvium (setup.py)
